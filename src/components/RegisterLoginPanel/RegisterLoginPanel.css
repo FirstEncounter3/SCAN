@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #000000;
+    font-size: 14px;
+}
+
+.buttons-wrapper {
+    margin-right: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.register-link {
+    color: dimgrey;
+}
+
+.vertical-line {
+    border-left: 2px solid #029491; 
+    height: 26px;
+}
+
+.login-button {
+    background-color: #7CE3E1;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 10px 5px;
+    width: 65px;
+    height: 26px;
+    cursor: pointer;
+}

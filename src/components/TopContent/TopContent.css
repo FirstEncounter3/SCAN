@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Ferry;
+    src: url(../../static/fonts/ferry_black.otf);
+}
+
+.top-content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 24px;
+    margin-left: 60px;
+}
+
+.info-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.img-wrapper {
+    width: 629px;
+    height: 593px;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 900;
+    font-family: Ferry;
+}
+
+p {
+    font-size: 20px;
+}
+
+.request-button {
+    width: 335px;
+    height: 59px;
+    background: #5970FF;
+    border-radius: 5px;
+    border: none;
+    color: #FFFFFF;
+    font-size: 22px;
+    padding: 14px 64px 18px 63px;
+    margin-top: 70px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .top-content {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        margin-left: 14px;
+    }
+
+    .img-wrapper {
+        width: 347px;
+        height: 342px;
+    }
+
+    .img-wrapper > img {
+        width: 347px;
+        height: 342px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .request-button {
+        margin-top: 32px;
+        width: 335px;
+        height: 59px;
+        font-size: 20px;
+        padding: 18px 72px 17px 74px;
+    }
+}

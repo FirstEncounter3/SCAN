@@ -1,0 +1,11 @@
+.vector-content-wrapper {
+  margin-left: 51px;
+  margin-right: 82px;
+  margin-bottom: 107px;
+}
+
+@media screen and (max-width: 768px) {
+  .vector-content-wrapper {
+    margin-left: 14px;
+  }
+}
