@@ -8,4 +8,9 @@
   .vector-content-wrapper {
     margin-left: 14px;
   }
+
+  .vector-content-wrapper > img {
+    content: url("../../../public/vector_content_small.svg");
+  }
+
 }
