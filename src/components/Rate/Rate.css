@@ -1,0 +1,174 @@
+.beginer {
+  width: 415px;
+  height: 540px;
+  box-shadow: 0px 0px 20px 0px #00000033;
+  border-radius: 10px;
+}
+
+.beginer:hover {
+  border: 1px solid #ffb64f;
+}
+
+.plan-top {
+  background: #ffb64f;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.plan-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-title > p,
+.plan-title > h2 {
+  margin-left: 30px;
+}
+
+.plan-title > h2 {
+  font-family: Inter;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 36.31px;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+
+.plan-title > p {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  width: 313px;
+  margin-top: -10px;
+  margin-right: -36px;
+}
+
+.plan-img {
+  margin-top: 11px;
+  margin-right: 16px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  margin-bottom: -30px;
+}
+
+.plan-bottom {
+  margin-left: 30px;
+}
+
+.price > h2,
+.price > span {
+  margin-right: 5px;
+}
+
+.price > h2 {
+  font-family: Inter;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 36.31px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  margin-right: 19px;
+}
+
+.price > span {
+  font-family: Inter;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 30.26px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: darkgray;
+  text-decoration: line-through;
+}
+
+.footnote {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  margin-bottom: 60px;
+  padding-right: 8px;
+}
+
+.label-list {
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  margin-bottom: -17px;
+}
+
+.plan-bottom > ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.plan-bottom > ul > li {
+  display: flex;
+  align-items: center;
+  margin-bottom: -20px;
+}
+
+.check {
+  height: 20px;
+  width: 20px;
+  background-image: url("../../../public/check.png");
+  margin-right: 8px;
+}
+
+.plan-bottom > ul > li > p {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+
+.button-plan {
+  margin-top: -50px;
+}
+
+@media screen and (max-width: 768px) {
+  .beginer {
+    width: 335px;
+    height: 512px;
+  }
+
+  .plan-title > h2 {
+    font-size: 20px;
+  }
+
+  .plan-title > p {
+    margin-right: -72px;
+    margin-top: 10px;
+  }
+
+  .plan-img > img {
+    content: url("../../../public/beginner_small.svg");
+  }
+
+  .button-plan > button {
+    width: 286px;
+    height: 59px;
+  }
+
+  .footnote {
+    margin-bottom: 36px;
+  }
+
+  .label-list {
+    margin-bottom: -24px;
+  }
+}
