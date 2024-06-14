@@ -1,0 +1,48 @@
+.logout-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 60px;
+  margin-top: 20px;
+}
+
+.user-info {
+  text-align: right;
+}
+
+.user-info > h3 {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: #000000;
+  margin: 0;
+}
+
+.user-info > a {
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12.1px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: darkgray;
+  margin-right: 3px;
+}
+
+.img-user-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.img-user-wrapper > img {
+  margin-left: 2px;
+  width: 32px;
+  height: 32px;
+}
