@@ -1,16 +1,12 @@
-.beginer {
+.plan-card {
   width: 415px;
   height: 540px;
   box-shadow: 0px 0px 20px 0px #00000033;
   border-radius: 10px;
-}
-
-.beginer:hover {
-  border: 1px solid #ffb64f;
+  transition: 0.3s;
 }
 
 .plan-top {
-  background: #ffb64f;
   display: flex;
   flex-direction: row;
   border-radius: 10px 10px 0px 0px;
@@ -50,6 +46,11 @@
 .plan-img {
   margin-top: 11px;
   margin-right: 16px;
+}
+
+.plan-img > img {
+  width: 94px;
+  height: 104px;
 }
 
 .price {
@@ -141,7 +142,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .beginer {
+  .plan-card {
     width: 335px;
     height: 512px;
   }
@@ -155,8 +156,13 @@
     margin-top: 10px;
   }
 
+  .plan-img {
+    margin-right: 18px;
+  }
+
   .plan-img > img {
-    content: url("../../../public/beginner_small.svg");
+    width: 68px;
+    height: 75px;
   }
 
   .button-plan > button {
