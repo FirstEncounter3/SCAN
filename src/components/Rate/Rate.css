@@ -9,7 +9,7 @@
 .plan-top {
   display: flex;
   flex-direction: row;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 7px 7px 0px 0px;
 }
 
 .plan-title {
