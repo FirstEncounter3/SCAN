@@ -8,7 +8,7 @@
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
-  z-index: 1;
+  z-index: 2;
   margin-right: 28px;
 }
 
@@ -45,6 +45,7 @@
   height: 100vh; /* Take full height of the screen */
   background-color: #029491; /* Add your desired background color */
   transition: right 0.3s ease; /* Smooth transition effect */
+  z-index: 1;
 }
 
 .menu.open {
