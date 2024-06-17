@@ -3,12 +3,21 @@ import { Link } from "react-router-dom";
 
 import "./RegisterLoginPanelMobile.css";
 
+import { useLoginHandler } from "../../utils/utils";
+
 const RegisterLoginPanelMobile = ({ islogin }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const { handleLoginClick } = useLoginHandler();
+
+  const handleLoginClickAndCloseMenu = () => {
+    handleLoginClick();
+    setIsOpen(false);
+  }
 
   return (
     <div className="burger-menu">
@@ -25,17 +34,17 @@ const RegisterLoginPanelMobile = ({ islogin }) => {
           <img src="header_left_transparent.png" alt="logo" />
         </div>
         <div className="menu-links">
-          <Link to="#">Главная</Link>
-          <Link to="#">Тарифы</Link>
-          <Link to="#">FAQ</Link>
+          <Link to="/" onClick={toggleMenu}>Главная</Link>
+          <Link to="/contacts" onClick={toggleMenu}>Тарифы</Link>
+          <Link to="/about" onClick={toggleMenu}>FAQ</Link>
         </div>
         <div className="menu-footer">
           {islogin ? (
             <button>Выйти</button>
           ) : (
             <>
-              <Link to="/register">Зарегистрироваться</Link>
-              <button>Войти</button>
+              <Link to="/register" onClick={toggleMenu}>Зарегистрироваться</Link>
+              <button onClick={handleLoginClickAndCloseMenu}>Войти</button>
             </>
           )}
         </div>
