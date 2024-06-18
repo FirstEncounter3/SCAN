@@ -1,0 +1,74 @@
+.search-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 872px;
+  height: 543px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  padding-top: 29px;
+  padding-left: 44px;
+}
+
+.search-from-inputs-and-checkboxes-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 55px;
+}
+
+.search-form-date-and-submit-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.search-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 112px;
+}
+
+.search-button-wrapper > button {
+  width: 305px;
+  height: 59px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background: rgba(89, 112, 255, 1);
+  font-family: Inter;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26.63px;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.search-button-wrapper > span {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: rgba(148, 148, 148, 1);
+}
+
+.inactive {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form-wrapper {
+    width: 375px;
+    height: 688px;
+    padding-left: 14px;
+  }
+
+  .search-form-date-and-submit-wrapper {
+    flex-direction: column;
+    margin-right: 27px;
+  }
+}
