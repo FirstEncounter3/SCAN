@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 
 import Login from "../Login/Login";
 import Stub from "../Stub/Stub";
+import Search from "../Search/Search";
 
 import "./App.css"
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/contacts" element={<Stub />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Stub />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />
     </BrowserRouter>
