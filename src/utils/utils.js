@@ -26,3 +26,14 @@ export const useLoginHandler = () => {
 
   return { handleLoginClick };
 };
+
+
+export const useSearchHandler = () => {
+  const navigate = useNavigate();
+
+  const handleSearchClick = () => {
+    navigate("/search");
+  };
+
+  return { handleSearchClick };
+};
