@@ -1,0 +1,33 @@
+.search-form-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-form-inputs > label {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    letter-spacing: 0.03em;
+    text-align: left;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.search-form-inputs > input, select {
+    border-radius: 5px;
+    border: 1px solid #c7c7c7;
+    height: 43px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+}
+
+.search-form-inputs > select {
+    background-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+    .search-form-inputs > input {
+        width: 335px;
+    }
+}
