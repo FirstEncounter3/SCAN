@@ -3,12 +3,23 @@ import { Link } from "react-router-dom";
 
 import "./Login.css";
 
+import { validateLogin } from "../../utils/validators";
+
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
 
   const handleLoginChange = (event) => {
-    setLogin(event.target.value);
+    const { value } = event.target;
+    setLogin(value);
+
+    if (value.trim() === "") {
+      setLoginError("Данное поле не может быть пустым");
+    } else {
+      const loginValidationResult = validateLogin(value);
+      setLoginError(loginValidationResult === true ? "" : loginValidationResult);
+    }
   };
 
   const handlePasswordChange = (event) => {
@@ -17,6 +28,20 @@ const Login = () => {
 
   const isLoginEmpty = login === "";
   const isPasswordEmpty = password === "";
+
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
+    if (isLoginEmpty || isPasswordEmpty || loginError) {
+      setLoginError("Введите корректные данные");
+      return;
+    }
+
+    const loginError = validateLogin(login);
+    if (typeof loginError === "string") {
+      setLoginError(loginError);
+      return;
+    }
+  };
 
   return (
     <section className="login-wrapper">
@@ -41,7 +66,10 @@ const Login = () => {
                 id="login"
                 value={login}
                 onChange={handleLoginChange}
+                required={true}
+                className={loginError ? "input-error-state" : ""}
               />
+              <p className={`p-error-state ${loginError ? "visible" : "hidden"}`}>{loginError}</p>
             </div>
             <div className="label-and-input-wrapper">
               <label htmlFor="password">Пароль</label>
@@ -50,6 +78,7 @@ const Login = () => {
                 id="password"
                 value={password}
                 onChange={handlePasswordChange}
+                required={true}
               />
             </div>
             <div className="login-buttons">
