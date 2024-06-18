@@ -5,7 +5,8 @@ import "./Stub.css";
 const Stub = () => {
   return (
     <div className="stub-wrapper">
-      <h1>Данных пока нет</h1>
+      <h1>404</h1>
+      <p>Страница не найдена</p>
     </div>
   );
 };
