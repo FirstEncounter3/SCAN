@@ -1,0 +1,18 @@
+.search-page-results-top-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 60px;
+}
+
+.top-content-header {
+    margin-right: 215px;
+}
+
+.top-content-header > h1 {
+    font-size: 40px;
+}
+
+.top-content-img {
+    margin-right: 103px;
+}
