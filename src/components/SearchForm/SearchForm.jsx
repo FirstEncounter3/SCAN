@@ -6,10 +6,11 @@ import SearchCheckboxes from "../SearchCheckboxes/SearchCheckboxes";
 
 import "./SearchForm.css";
 
-import { useIsMobile } from "../../utils/utils";
+import { useIsMobile, useSearchResultsHandler } from "../../utils/utils";
 
 const SearchForm = () => {
   const isMobile = useIsMobile();
+  const { handleSearchResultsClick } = useSearchResultsHandler();
 
   return (
     <div className="search-form-wrapper">
@@ -26,7 +27,7 @@ const SearchForm = () => {
       <div className="search-form-date-and-submit-wrapper">
         <DateRangePicker />
         <div className="search-button-wrapper">
-          <button className="search-button">Поиск</button>
+          <button className="search-button" onClick={handleSearchResultsClick}>Поиск</button>
           <span>* Обязательные к заполнению поля</span>
         </div>
       </div>
