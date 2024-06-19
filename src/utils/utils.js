@@ -27,7 +27,6 @@ export const useLoginHandler = () => {
   return { handleLoginClick };
 };
 
-
 export const useSearchHandler = () => {
   const navigate = useNavigate();
 
@@ -36,4 +35,14 @@ export const useSearchHandler = () => {
   };
 
   return { handleSearchClick };
+};
+
+export const useSearchResultsHandler = () => {
+  const navigate = useNavigate();
+
+  const handleSearchResultsClick = () => {
+    navigate("/results");
+  };
+
+  return { handleSearchResultsClick };
 };
