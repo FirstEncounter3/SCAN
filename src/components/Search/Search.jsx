@@ -8,7 +8,7 @@ import "./Search.css";
 import { useIsMobile } from "../../utils/utils";
 
 const Search = () => {
-  const [isLogin, setIsLogin] = React.useState(false);
+  const [isLogin, setIsLogin] = React.useState(true);
   const isMobile = useIsMobile();
 
   return isLogin ? (
