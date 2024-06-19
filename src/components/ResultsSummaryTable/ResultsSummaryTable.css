@@ -1,0 +1,140 @@
+.results-summary-table-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 107px;
+}
+
+.summary-table-wrapper {
+  width: 100%;
+  border: 2px solid rgba(2, 148, 145, 1);
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.results-summary-table-wrapper > button {
+  margin-top: 60px;
+}
+
+.summary-table {
+  display: block;
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24.2px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.summary-table thead,
+.summary-table tbody,
+.summary-table th {
+  display: block;
+}
+
+.summary-table thead {
+  float: left;
+}
+
+.summary-table tbody {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.summary-table tbody tr {
+  display: table-cell;
+}
+
+.summary-table td {
+  display: block;
+  border-right: 1px solid rgba(148, 148, 148, 1);
+}
+
+.summary-table th,
+.summary-table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.summary-table th {
+  background-color: rgba(2, 148, 145, 1);
+  color: white;
+}
+
+.summary-table th:nth-child(1) {
+  border-radius: 5px 0 0 0;
+}
+
+.summary-table th:nth-child(3) {
+  border-radius: 0 0 0 5px;
+}
+
+.summary-table td:not(:last-child) {
+  border-right: 1px solid rgba(148, 148, 148, 1);
+}
+
+/* 
+@media (max-width: 768px) {
+    .summary-table {
+      display: block;
+    }
+  
+    .summary-table thead,
+    .summary-table tbody,
+    .summary-table th {
+      display: block;
+    }
+  
+    .summary-table thead {
+      float: none;
+    }
+  
+    .summary-table tbody {
+      height: auto;
+      overflow-x: auto;
+    }
+  
+    .summary-table tbody tr {
+      display: block;
+    }
+  
+    .summary-table td {
+      display: block;
+      border-right: none;
+    }
+  
+    .summary-table th,
+    .summary-table td {
+      text-align: left;
+      padding: 10px;
+    }
+  
+    .summary-table th:nth-child(1) {
+      border-radius: 0;
+    }
+  
+    .summary-table th:nth-child(3) {
+      border-radius: 0;
+    }
+  
+    .summary-table td:not(:last-child) {
+      border-right: none;
+    }
+  
+    .summary-table th:nth-child(-n+3),
+    .summary-table td:nth-child(-n+3) {
+      display: inline-block;
+      width: calc(33.33% - 20px);
+      vertical-align: top;
+    }
+  
+    .summary-table tbody {
+      height: auto;
+    }
+  
+    .summary-table tbody tr:nth-child(-n+2) {
+      display: inline-block;
+      width: 100%;
+    }
+  } */
