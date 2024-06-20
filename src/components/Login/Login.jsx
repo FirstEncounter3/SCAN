@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 import { validateLogin } from "../../utils/validators";
+import { useSelector, useDispatch } from "react-redux";
+// import { loginUser } from "../../Store/userSlice";
+import { login, logout } from "../../Store/userSlice";
 
 const Login = () => {
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
+  const [login_value, setLogin] = useState("");
+  const [password_value, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+
+  const isLogin = useSelector((state) => state.user.isLogin);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLoginChange = (event) => {
     const { value } = event.target;
@@ -26,8 +33,8 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const isLoginEmpty = login === "";
-  const isPasswordEmpty = password === "";
+  const isLoginEmpty = login_value === "";
+  const isPasswordEmpty = password_value === "";
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
@@ -36,11 +43,13 @@ const Login = () => {
       return;
     }
 
-    const loginError = validateLogin(login);
+    const loginError = validateLogin(login_value);
     if (typeof loginError === "string") {
       setLoginError(loginError);
       return;
     }
+    dispatch(login());
+    navigate("/");
   };
 
   return (
@@ -64,7 +73,7 @@ const Login = () => {
               <input
                 type="text"
                 id="login"
-                value={login}
+                value={login_value}
                 onChange={handleLoginChange}
                 required={true}
                 className={loginError ? "input-error-state" : ""}
@@ -76,13 +85,13 @@ const Login = () => {
               <input
                 type="password"
                 id="password"
-                value={password}
+                value={password_value}
                 onChange={handlePasswordChange}
                 required={true}
               />
             </div>
             <div className="login-buttons">
-              <button
+              <button onClick={handleLoginSubmit}
                 className={isLoginEmpty || isPasswordEmpty ? "inactive" : ""}
                 disabled={isLoginEmpty || isPasswordEmpty}
               >
