@@ -22,7 +22,7 @@
   margin: 0;
 }
 
-.user-info > a {
+.user-info > button {
   font-family: Inter;
   font-size: 10px;
   font-weight: 400;
@@ -31,6 +31,9 @@
   text-align: left;
   color: darkgray;
   margin-right: 3px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .img-user-wrapper {
