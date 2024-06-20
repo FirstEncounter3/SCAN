@@ -6,9 +6,11 @@ import Unathorized from "../Unathorized/Unathorized";
 import "./Search.css";
 
 import { useIsMobile } from "../../utils/utils";
+import { useSelector } from "react-redux";
 
 const Search = () => {
-  const [isLogin, setIsLogin] = React.useState(true);
+  const isLogin = useSelector((state) => state.user.isLogin);
+  console.log(isLogin);
   const isMobile = useIsMobile();
 
   return isLogin ? (

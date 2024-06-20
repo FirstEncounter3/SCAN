@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./Header.css";
 
@@ -10,7 +11,7 @@ import RegisterLoginPanelMobile from "../RegisterLoginPanelMobile/RegisterLoginP
 import { useIsMobile } from "../../utils/utils";
 
 const Header = () => {
-  const [isLogin, setIsLogin] = React.useState(false);
+  const isLogin = useSelector((state) => state.user.isLogin);
 
   return (
     <nav className="header">

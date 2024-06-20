@@ -1,11 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import "./TopContent.css";
 
 import { useSearchHandler } from "../../utils/utils";
 
 const TopContent = () => {
-  const [isLogin, setIsLogin] = React.useState(true);
+  const isLogin = useSelector((state) => state.user.isLogin);
 
   const { handleSearchClick } = useSearchHandler();
 
