@@ -10,13 +10,14 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     background-color: #fff;
 }
 
 .image-header-wrapper {
     margin-left: 60px;
+    margin-right: 401px;
 }
 
 .links-wrapper {
@@ -36,4 +37,7 @@ a {
         margin-left: 14px;
     }
     
+    .image-header-wrapper {
+        margin-right: 0px;
+    }
 }
