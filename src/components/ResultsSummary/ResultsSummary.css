@@ -14,3 +14,10 @@
     font-size: 18px;
     color: rgba(148, 148, 148, 1);
 }
+
+@media screen and (max-width: 768px) {
+    .results-summary-wrapper {
+        margin-left: 14px;
+    }
+    
+}
