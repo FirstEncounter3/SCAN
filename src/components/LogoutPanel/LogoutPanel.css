@@ -9,6 +9,8 @@
 
 .user-info {
   text-align: right;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-info > h3 {
