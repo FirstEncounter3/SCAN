@@ -3,16 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 import { validateLogin } from "../../utils/validators";
-import { useSelector, useDispatch } from "react-redux";
-// import { loginUser } from "../../Store/userSlice";
-import { login, logout } from "../../Store/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../../Store/userSlice";
+import { userLogin } from "../../api/api";
 
 const Login = () => {
   const [login_value, setLogin] = useState("");
   const [password_value, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-
-  const isLogin = useSelector((state) => state.user.isLogin);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,6 +34,18 @@ const Login = () => {
   const isLoginEmpty = login_value === "";
   const isPasswordEmpty = password_value === "";
 
+  const loginrRequestToApi = async () => {
+    try {
+      const userCredentials = await userLogin(login_value, password_value);
+      const accessToken = userCredentials.accessToken;
+      const expire = userCredentials.expire;
+      dispatch(login({accessToken, expire}));
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const handleLoginSubmit = (event) => {
     event.preventDefault();
     if (isLoginEmpty || isPasswordEmpty || loginError) {
@@ -48,8 +58,8 @@ const Login = () => {
       setLoginError(loginError);
       return;
     }
-    dispatch(login());
-    navigate("/");
+    console.log(login_value, password_value);
+    loginrRequestToApi();
   };
 
   return (
