@@ -1,37 +1,25 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLogin: false,
-  token: null,
+  accessToken: null,
   expire: null
 };
 
-// export const loginUser = createAsyncThunk(
-//   "user/loginUser",
-//   async (userCredentials) => {
-//     const request = await axios.post(
-//       "https://gateway.scan-interfax.ru/api/v1/account/login",
-//       userCredentials
-//     );
-//     const responce = await request.data.data;
-//     localStorage.setItem("user", JSON.stringify(responce));
-//     return responce;
-//   }
-// );
+
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (state) => {
+    login: (state, action) => {
       state.isLogin = true;
-      state.token = '123'
-      state.expire = '456'
+      state.accessToken = action.payload.accessToken
+      state.expire = action.payload.expire
     },
     logout: (state) => {
       state.isLogin = false;
-      state.token = null
+      state.accessToken = null
       state.expire = null
     },
   },
