@@ -83,6 +83,7 @@
   flex-direction: column;
   margin-bottom: 10px;
   margin-left: 25px;
+  height: 98px;
 }
 
 .label-and-input-wrapper > label {
