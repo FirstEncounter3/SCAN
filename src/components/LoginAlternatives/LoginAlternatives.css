@@ -1,0 +1,47 @@
+.alternative-login-wrapper {
+  width: 308px;
+  height: 65px;
+  margin-left: 25px;
+}
+
+.alternative-login-wrapper > p {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #949494;
+  margin-bottom: 15px;
+}
+
+.alternative-login-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.alternative-login-buttons > button {
+  width: 96px;
+  height: 31px;
+  border-radius: 3px;
+  border: 1px solid rgba(89, 112, 255, 0.51);
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+  padding: 1px;
+}
+
+.alternative-login-buttons > button > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .alternative-login-wrapper {
+    margin-left: 0px;
+  }
+}
