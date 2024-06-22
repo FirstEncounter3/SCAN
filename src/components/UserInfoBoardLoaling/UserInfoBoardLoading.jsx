@@ -5,7 +5,7 @@ import "./UserInfoBoardLoading.css";
 function UserInfoBoardLoading() {
   return (
     <div className="user-info-wrapper-loader">
-        <span class="loader"></span>
+        <span className="loader"></span>
     </div>
   );
 }
