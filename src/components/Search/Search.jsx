@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 
 const Search = () => {
   const isLogin = useSelector((state) => state.user.isLogin);
-  console.log(isLogin);
   const isMobile = useIsMobile();
 
   return isLogin ? (
