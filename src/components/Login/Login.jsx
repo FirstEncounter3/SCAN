@@ -11,6 +11,11 @@ const Login = () => {
   const [login_value, setLogin] = useState("");
   const [password_value, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const isLoginEmpty = login_value === "";
+  const isPasswordEmpty = password_value === "";
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,30 +28,37 @@ const Login = () => {
       setLoginError("Данное поле не может быть пустым");
     } else {
       const loginValidationResult = validateLogin(value);
-      setLoginError(loginValidationResult === true ? "" : loginValidationResult);
+      setLoginError(
+        loginValidationResult === true ? "" : loginValidationResult
+      );
     }
   };
 
   const handlePasswordChange = (event) => {
+    const { value } = event.target;
     setPassword(event.target.value);
+
+    if (value.trim() === "") {
+      setPasswordError("Данное поле не может быть пустым");
+    } else {
+      setPasswordError("");
+    }
   };
 
-  const isLoginEmpty = login_value === "";
-  const isPasswordEmpty = password_value === "";
-
-  const loginrRequestToApi = async () => {
+  const loginRequestToApi = async () => {
     try {
       const userCredentials = await userLogin(login_value, password_value);
       const accessToken = userCredentials.accessToken;
       const expire = userCredentials.expire;
-      dispatch(login({accessToken, expire}));
+      dispatch(login({ accessToken, expire }));
       navigate("/");
     } catch (error) {
       console.log(error);
+      setPasswordError(error.response.data.message);
     }
-  }
+  };
 
-  const handleLoginSubmit = (event) => {
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
     if (isLoginEmpty || isPasswordEmpty || loginError) {
       setLoginError("Введите корректные данные");
@@ -58,8 +70,16 @@ const Login = () => {
       setLoginError(loginError);
       return;
     }
-    console.log(login_value, password_value);
-    loginrRequestToApi();
+
+    setIsLoading(true);
+
+    try {
+      await loginRequestToApi();
+    } catch (error) {
+      console.log(error);
+    }
+
+    setIsLoading(false);
   };
 
   return (
@@ -88,7 +108,11 @@ const Login = () => {
                 required={true}
                 className={loginError ? "input-error-state" : ""}
               />
-              <p className={`p-error-state ${loginError ? "visible" : "hidden"}`}>{loginError}</p>
+              <p
+                className={`p-error-state ${loginError ? "visible" : "hidden"}`}
+              >
+                {loginError}
+              </p>
             </div>
             <div className="label-and-input-wrapper">
               <label htmlFor="password">Пароль</label>
@@ -98,14 +122,23 @@ const Login = () => {
                 value={password_value}
                 onChange={handlePasswordChange}
                 required={true}
+                className={passwordError ? "input-error-state" : ""}
               />
+              <p
+                className={`p-error-state ${
+                  passwordError ? "visible" : "hidden"
+                }`}
+              >
+                {passwordError}
+              </p>
             </div>
             <div className="login-buttons">
-              <button onClick={handleLoginSubmit}
+              <button
+                onClick={handleLoginSubmit}
                 className={isLoginEmpty || isPasswordEmpty ? "inactive" : ""}
-                disabled={isLoginEmpty || isPasswordEmpty}
+                disabled={isLoginEmpty || isPasswordEmpty || isLoading}
               >
-                Войти
+                {isLoading ? "Выполняется вход..." : "Войти"}
               </button>
               <Link to="#">Восстановить пароль</Link>
             </div>
