@@ -1,33 +1,71 @@
 .search-form-inputs {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.search-form-inputs > label {
-    font-family: Inter;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 21.78px;
-    letter-spacing: 0.03em;
-    text-align: left;
-    margin-bottom: 20px;
-    color: rgba(0, 0, 0, 1);
+.search-input-and-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  height: 106px;
 }
 
-.search-form-inputs > input, select {
-    border-radius: 5px;
-    border: 1px solid #c7c7c7;
-    height: 43px;
-    padding-left: 10px;
-    margin-bottom: 30px;
+.search-input-and-label > label {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 20px;
 }
 
-.search-form-inputs > select {
-    background-color: transparent;
+.search-input-and-label > input,
+select {
+  border-radius: 5px;
+  border: 1px solid #c7c7c7;
+  height: 43px;
+  padding-left: 10px;
+}
+
+.search-input-and-label > select {
+  background-color: transparent;
+}
+
+/* классы для ошибок и неактивных состояний */
+.search-input-and-label > .input-error-search {
+  border: 1px solid rgba(255, 89, 89, 1);
+  box-shadow: 0px 0px 10px 0px rgba(255, 89, 89, 0.2);
+  color: rgba(255, 89, 89, 1);
+}
+
+.p-error-search {
+  font-family: Inter;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  color: rgba(255, 89, 89, 1);
+  text-align: center;
+}
+
+.inactive {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.visible {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
-    .search-form-inputs > input {
-        width: 335px;
-    }
+    .search-input-and-label > input {
+    width: 335px;
+  }
 }
