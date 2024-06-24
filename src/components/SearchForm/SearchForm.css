@@ -63,12 +63,16 @@
 @media screen and (max-width: 768px) {
   .search-form-wrapper {
     width: 375px;
-    height: 688px;
+    height: 746px;
     padding-left: 14px;
   }
 
   .search-form-date-and-submit-wrapper {
     flex-direction: column;
     margin-right: 27px;
+  }
+
+  .search-button-wrapper {
+    margin-top: 90px;
   }
 }
