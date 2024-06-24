@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 import { getUserInfo } from '../../api/api'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { logout } from "../../Store/userSlice";
 
 import './UserInfoBoard.css'
 
@@ -11,15 +14,27 @@ const UserInfoBoard = () => {
     const [usedCompanies, setUsedCompanies] = useState(0);
     const [limitOfCompanies, setLimitOfCompanies] = useState(0);
     const [loading, setLoading] = useState(true);
+
     const accessToken = useSelector((state) => state.user.accessToken);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getUserInfo(accessToken);
-            setUsedCompanies(response.eventFiltersInfo.usedCompanyCount);
-            setLimitOfCompanies(response.eventFiltersInfo.companyLimit);
-            setLoading(false);
+            try {
+                const response = await getUserInfo(accessToken);
+                setUsedCompanies(response.eventFiltersInfo.usedCompanyCount);
+                setLimitOfCompanies(response.eventFiltersInfo.companyLimit);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                if (error.response && error.response.status === 401) {
+                    dispatch(logout());
+                    alert('Время сессии истекло. Пожалуйста, авторизуйтесь повторно');
+                    navigate('/login');
+                }
+            }
         };
 
         fetchData();
@@ -28,7 +43,6 @@ const UserInfoBoard = () => {
     if (loading) {
         return <UserInfoBoardLoading/>;
     }
-
 
   return (
     <div className='user-info-wrapper'>
