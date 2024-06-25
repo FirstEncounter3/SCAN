@@ -9,39 +9,49 @@ import SearchCheckboxes from "../SearchCheckboxes/SearchCheckboxes";
 import "./SearchForm.css";
 
 import { useIsMobile } from "../../utils/utils";
-import { getHistograms } from "../../api/api";
 
 const SearchForm = () => {
   const isMobile = useIsMobile();
-  const accessToken = useSelector((state) => state.user.accessToken);
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
   const [inn, setInn] = useState("");
   const [documentsCount, setDocumentsCount] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [tonality, setTonnality] = useState("any");
+  const [isFormInnValid, setIsFormInnValid] = useState(false);
+  const [isFormDocumentCountValid, setIsFormDocumentCountValid] = useState(false);
 
-  const handleInnChange = (innValue) => {
+  const handleInnChange = (innValue, validateState) => {
     setInn(innValue);
-    setIsFormValid(inn !== "" && documentsCount > "");
+    if (validateState === true) {
+      setIsFormInnValid(true);
+    } else {
+      setIsFormInnValid(false);
+    }
   };
 
-  const handleDocumentCountChange = (documentCountValue) => {
+  const handleDocumentCountChange = (documentCountValue, validateState) => {
     setDocumentsCount(documentCountValue);
-    setIsFormValid(inn !== "" && documentsCount > "");
+    if (validateState === true) {
+      setIsFormDocumentCountValid(true);
+    } else {
+      setIsFormDocumentCountValid(false);
+    }
+  };
+
+  const handleTonnalityChange = (tonalityValue) => {
+    setTonnality(tonalityValue);
   };
 
   const makeSearchRequest = async () => {
     setIsLoading(true);
-    const response = await getHistograms(accessToken);
-    console.log(response);
-    setIsLoading(false);
-
     const params = new URLSearchParams();
     params.append("inn", inn);
     params.append("documentsCount", documentsCount);
+    params.append("tonality", tonality);
 
     navigate(`/results?${params.toString()}`);
+    setIsLoading(false);
   };
 
   return (
@@ -51,12 +61,14 @@ const SearchForm = () => {
           <SearchInputs
             onInnChange={handleInnChange}
             onDocumentCountChange={handleDocumentCountChange}
+            onTonnalityChange={handleTonnalityChange}
           />
         ) : (
           <>
             <SearchInputs
               onInnChange={handleInnChange}
               onDocumentCountChange={handleDocumentCountChange}
+              onTonnalityChange={handleTonnalityChange}
             />
             <SearchCheckboxes />
           </>
@@ -66,9 +78,9 @@ const SearchForm = () => {
         <DateRangePicker />
         <div className="search-button-wrapper">
           <button
-            className={`search-button ${isFormValid ? "" : "inactive"}`}
+            className={`search-button ${isFormInnValid && isFormDocumentCountValid ? "" : "inactive"}`}
             onClick={makeSearchRequest}
-            disabled={isLoading || !isFormValid}
+            disabled={isLoading || !isFormInnValid || !isFormDocumentCountValid}
           >
             {isLoading ? "Получение данных..." : "Поиск"}
           </button>
