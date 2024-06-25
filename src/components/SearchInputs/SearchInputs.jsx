@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import "./SearchInputs.css";
 
-import { validateINN } from "../../utils/validators";
+import { validateINN, validateDocumentsCount } from "../../utils/validators";
 
-const SearchInputs = ({ onInnChange, onDocumentCountChange }) => {
+const SearchInputs = ({ onInnChange, onDocumentCountChange, onTonnalityChange }) => {
   const [inn, setInn] = useState("");
   const [innError, setInnError] = useState("");
   const [emptyDocumentsCount, setEmptyDocumentsCount] = useState('');
@@ -14,15 +14,14 @@ const SearchInputs = ({ onInnChange, onDocumentCountChange }) => {
     const { value } = e.target;
     setEmptyDocumentsCount(value);
 
-    const error = '';
-    if (value.trim() === "") {
-      setEmptyDocumentsCountError("Обязательное поле");
-    } 
-    else {
-      setEmptyDocumentsCountError(error);
-    }
+    const isValid = validateDocumentsCount(value);
 
-    onDocumentCountChange(value);
+    if (!isValid) {
+      setEmptyDocumentsCountError('Данное поле не может быть пустым');
+    } else {
+      setEmptyDocumentsCountError('');
+    }
+    onDocumentCountChange(value, isValid);
   };
 
   const handleInnChange = (e) => {
@@ -37,7 +36,12 @@ const SearchInputs = ({ onInnChange, onDocumentCountChange }) => {
     } else {
       setInnError("");
     }
-    onInnChange(value);
+    onInnChange(value, isValid);
+  };
+
+  const handleTonnalityChange = (e) => {
+    const { value } = e.target;
+    onTonnalityChange(value);
   };
 
   return (
@@ -58,7 +62,7 @@ const SearchInputs = ({ onInnChange, onDocumentCountChange }) => {
       </div>
       <div className="search-input-and-label">
         <label>Тоннальность</label>
-        <select id="tonality" name="tonality">
+        <select id="tonality" name="tonality" onChange={handleTonnalityChange}>
           <option value="any">Любая</option>
           <option value="positive">Позитивная</option>
           <option value="negative">Негативная</option>
