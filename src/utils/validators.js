@@ -64,3 +64,11 @@ export const validateINN = (inn, error) => {
   }
   return result;
 };
+
+export const validateDocumentsCount = (value) => {
+  if (value.trim() === "")  {
+    return false;
+  } else {
+    return true;
+  }
+};
