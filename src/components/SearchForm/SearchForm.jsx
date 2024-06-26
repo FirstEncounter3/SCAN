@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import SearchInputs from "../SearchInputs/SearchInputs";
 import DateRangePicker from "../DateRangePicker/DateRangePicker";
@@ -20,6 +19,19 @@ const SearchForm = () => {
   const [tonality, setTonnality] = useState("any");
   const [isFormInnValid, setIsFormInnValid] = useState(false);
   const [isFormDocumentCountValid, setIsFormDocumentCountValid] = useState(false);
+
+  const [completeness, setCompleteness] = useState(false);
+  const [businessContext, setBusinessContext] = useState(false);
+  const [mainRole, setMainrole] = useState(false);
+  const [riskFactor, setRiskFactor] = useState(false);
+  const [technicalNews, setTechnicalNews] = useState(false);
+  const [announcements, setAnnouncements] = useState(false);
+  const [summaries, setSummaries] = useState(false);
+
+  const [startDate, setStartDate] = useState("");
+  const [isFormStartDateValid, setIsFormStartDateValid] = useState(false);
+  const [endDate, setEndDate] = useState("");
+  const [isFormEndDateValid, setIsFormEndDateValid] = useState(false);
 
   const handleInnChange = (innValue, validateState) => {
     setInn(innValue);
@@ -43,12 +55,67 @@ const SearchForm = () => {
     setTonnality(tonalityValue);
   };
 
+  const handleCheckboxChanged = (checkboxId, checkboxState) => {
+    switch (checkboxId) {
+      case "completeness":
+        setCompleteness(checkboxState);
+        break;
+      case "business-context":
+        setBusinessContext(checkboxState);
+        break;
+      case "main-role":
+        setMainrole(checkboxState);
+        break;
+      case "risk-factor":
+        setRiskFactor(checkboxState);
+        break;
+      case "technical-news":
+        setTechnicalNews(checkboxState);
+        break;
+      case "announcements":
+        setAnnouncements(checkboxState);
+        break;
+      case "summaries":
+        setSummaries(checkboxState);
+        break;
+        default:
+          console.error(`Cehckbox with id ${checkboxId} not found`);
+          break;
+    }
+  };
+
+  const handleStartDateChange = (startValue, validateState) => {
+    setStartDate(`${startValue}T00:00:00+03:00`);
+    if (validateState === true) {
+      setIsFormStartDateValid(true);
+    } else {
+      setIsFormStartDateValid(false);
+    }
+  };
+  const handleEndDateChange = (endValue, validateState) => {
+    setEndDate(`${endValue}T23:59:59+03:00`);
+    if (validateState === true) {
+      setIsFormEndDateValid(true);
+    } else {
+      setIsFormEndDateValid(false);
+    }
+  };
+
   const makeSearchRequest = async () => {
     setIsLoading(true);
     const params = new URLSearchParams();
     params.append("inn", inn);
     params.append("documentsCount", documentsCount);
     params.append("tonality", tonality);
+    params.append("completeness", completeness);
+    params.append("businessContext", businessContext);
+    params.append("mainRole", mainRole);
+    params.append("riskFactor", riskFactor);
+    params.append("technicalNews", technicalNews);
+    params.append("announcements", announcements);
+    params.append("summaries", summaries);
+    params.append("startDate", startDate);
+    params.append("endDate", endDate);
 
     navigate(`/results?${params.toString()}`);
     setIsLoading(false);
@@ -70,17 +137,17 @@ const SearchForm = () => {
               onDocumentCountChange={handleDocumentCountChange}
               onTonnalityChange={handleTonnalityChange}
             />
-            <SearchCheckboxes />
+            <SearchCheckboxes onCheckboxChange={handleCheckboxChanged}/>
           </>
         )}
       </div>
       <div className="search-form-date-and-submit-wrapper">
-        <DateRangePicker />
+        <DateRangePicker onStartDateChange={handleStartDateChange} onEndDateChange={handleEndDateChange}/>
         <div className="search-button-wrapper">
           <button
-            className={`search-button ${isFormInnValid && isFormDocumentCountValid ? "" : "inactive"}`}
+            className={`search-button ${isFormInnValid && isFormDocumentCountValid && isFormStartDateValid && isFormEndDateValid ? "" : "inactive"}`}
             onClick={makeSearchRequest}
-            disabled={isLoading || !isFormInnValid || !isFormDocumentCountValid}
+            disabled={isLoading || !isFormInnValid || !isFormDocumentCountValid || !isFormStartDateValid || !isFormEndDateValid}
           >
             {isLoading ? "Получение данных..." : "Поиск"}
           </button>
