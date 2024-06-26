@@ -85,7 +85,7 @@ const SearchForm = () => {
   };
 
   const handleStartDateChange = (startValue, validateState) => {
-    setStartDate(`${startValue}T00:00:00+03:00`);
+    setStartDate(startValue);
     if (validateState === true) {
       setIsFormStartDateValid(true);
     } else {
@@ -93,7 +93,7 @@ const SearchForm = () => {
     }
   };
   const handleEndDateChange = (endValue, validateState) => {
-    setEndDate(`${endValue}T23:59:59+03:00`);
+    setEndDate(endValue);
     if (validateState === true) {
       setIsFormEndDateValid(true);
     } else {
