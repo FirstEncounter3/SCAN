@@ -72,3 +72,19 @@ export const validateDocumentsCount = (value) => {
     return true;
   }
 };
+
+export const validateStartDate = (dateUsed, comprasionDate) => {
+    if (dateUsed <= comprasionDate || comprasionDate === "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+export const validateEndDate = (dateUsed, comprasionDate) => {
+    if (dateUsed >= comprasionDate || comprasionDate === "") {
+        return true;
+    } else {
+        return false;
+    }
+}
