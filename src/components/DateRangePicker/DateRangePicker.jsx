@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 import "./DateRangePicker.css";
 
-const DateRangePicker = () => {
+import { validateStartDate, validateEndDate } from "../../utils/validators";
+
+const DateRangePicker = ( { onStartDateChange, onEndDateChange } ) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [dateError, setDateError] = useState("");
@@ -11,36 +13,42 @@ const DateRangePicker = () => {
     const newStartDate = e.target.value;
     const formattedStartDate = newStartDate.split("-").reverse().join(".");
 
-    if (formattedStartDate <= endDate || endDate === "") {
-      setStartDate(formattedStartDate);
-      e.target.type = "text";
-      e.target.value = formattedStartDate;
-      console.log(formattedStartDate);
-      setDateError("");
-    } else {
+    const isValid = validateStartDate(formattedStartDate, endDate);
+
+    if (!isValid) {
       setStartDate(formattedStartDate);
       e.target.type = "text";
       e.target.value = formattedStartDate;
       setDateError("Введите корректные данные");
+    } else {
+      setStartDate(formattedStartDate);
+      e.target.type = "text";
+      e.target.value = formattedStartDate;
+      setDateError("");
     }
+
+    onStartDateChange(formattedStartDate, isValid);
   };
 
   const handleEndDateChange = (e) => {
     const newEndDate = e.target.value;
     const formattedEndDate = newEndDate.split("-").reverse().join(".");
 
-    if (formattedEndDate >= startDate || startDate === "") {
-      setEndDate(formattedEndDate);
-      e.target.type = "text";
-      e.target.value = formattedEndDate;
-      console.log(formattedEndDate);
-      setDateError("");
-    } else {
+    const isValid = validateEndDate(formattedEndDate, startDate);
+
+    if (!isValid) {
       setEndDate(formattedEndDate);
       e.target.type = "text";
       e.target.value = formattedEndDate;
       setDateError("Введите корректные данные");
+    } else {
+      setEndDate(formattedEndDate);
+      e.target.type = "text";
+      e.target.value = formattedEndDate;
+      setDateError("");
     }
+
+    onEndDateChange(formattedEndDate, isValid);
   };
 
   const handleInputFocus = (e) => {
