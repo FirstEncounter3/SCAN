@@ -13,6 +13,9 @@ const DateRangePicker = ( { onStartDateChange, onEndDateChange } ) => {
     const newStartDate = e.target.value;
     const formattedStartDate = newStartDate.split("-").reverse().join(".");
 
+    const dataForApi = new Date(newStartDate)
+    const parsedStartDate = dataForApi.toISOString().split('.')[0] + '+03:00';
+
     const isValid = validateStartDate(formattedStartDate, endDate);
 
     if (!isValid) {
@@ -27,13 +30,16 @@ const DateRangePicker = ( { onStartDateChange, onEndDateChange } ) => {
       setDateError("");
     }
 
-    onStartDateChange(formattedStartDate, isValid);
+    onStartDateChange(parsedStartDate, isValid);
   };
 
   const handleEndDateChange = (e) => {
     const newEndDate = e.target.value;
     const formattedEndDate = newEndDate.split("-").reverse().join(".");
 
+    const dataForApi = new Date(newEndDate)
+    const parsedEndDate = dataForApi.toISOString().split('.')[0] + '+03:00';
+    
     const isValid = validateEndDate(formattedEndDate, startDate);
 
     if (!isValid) {
@@ -48,7 +54,7 @@ const DateRangePicker = ( { onStartDateChange, onEndDateChange } ) => {
       setDateError("");
     }
 
-    onEndDateChange(formattedEndDate, isValid);
+    onEndDateChange(parsedEndDate, isValid);
   };
 
   const handleInputFocus = (e) => {
