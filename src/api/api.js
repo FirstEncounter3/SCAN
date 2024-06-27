@@ -21,7 +21,21 @@ export const getUserInfo = async (accessToken) =>  {
     return request.data
 }
 
-export const getHistograms = async (accessToken, startDate, endDate, documentsCount, inn, tonality, mainRole, riskFactors) =>  {
+export const getHistograms = async (
+  accessToken, 
+  startDate, 
+  endDate, 
+  documentsCount, 
+  inn, 
+  tonality, 
+  mainRole, 
+  riskFactors, 
+  completeness, 
+  businessContext,
+  technicalNews,
+  announcements,
+  summaries
+) =>  {
     const url = `${baseUrl}/api/v1/objectsearch/histograms`
     const data = {
         "issueDateInterval": {
@@ -36,8 +50,8 @@ export const getHistograms = async (accessToken, startDate, endDate, documentsCo
                 "sparkId": null,
                 "entityId": null,
                 "inn": inn,
-                "maxFullness": true,
-                "inBusinessNews": null
+                "maxFullness": completeness,
+                "inBusinessNews": businessContext
               }
             ],
             "onlyMainRole": mainRole,
@@ -67,9 +81,9 @@ export const getHistograms = async (accessToken, startDate, endDate, documentsCo
           "excludedSourceGroups": []
         },
         "attributeFilters": {
-          "excludeTechNews": true,
-          "excludeAnnouncements": true,
-          "excludeDigests": true
+          "excludeTechNews": technicalNews,
+          "excludeAnnouncements": announcements,
+          "excludeDigests": summaries
         },
         "similarMode": "duplicates",
         "limit": documentsCount,
