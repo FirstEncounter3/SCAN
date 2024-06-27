@@ -6,7 +6,9 @@ import "./ResultsSummaryTable.css";
 
 import { getHistograms } from "../../api/api";
 
-const ResultsSummaryTable = () => {
+import ResultsSummaryTableLoader from "../ResultsSummaryTableLoader/ResultsSummaryTableLoader";
+
+const ResultsSummaryTable = ({ numberOfOptions }) => {
   const tbodyRef = useRef(null);
   const [scrollLeft, setScrollLeft] = useState(0);
   const location = useLocation();
@@ -26,11 +28,12 @@ const ResultsSummaryTable = () => {
   const announcements = query.get("announcements");
   const summaries = query.get("summaries");
 
-
   const accessToken = useSelector((state) => state.user.accessToken);
   const [histogramData, setHistogramData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await getHistograms(
@@ -48,7 +51,30 @@ const ResultsSummaryTable = () => {
           announcements,
           summaries
         );
-        setHistogramData(response.data);
+        const data = response.data;
+        console.log('Ответ от сервера', data);
+        const totalDocs = data[0];
+        console.log('totalDocs', totalDocs);
+        const totalRisks = data[1];
+        console.log('totalRisks', totalRisks);
+
+        const resultArrayForTable = totalDocs.data.map((doc, index) => {
+          const risks = totalRisks.data[index]?.value || 0;
+          const date = doc.date.split('T')[0].split('-').reverse().join('.');
+          return {
+            date: date,
+            value: doc.value,
+            risks: risks,
+          };
+        });
+        
+        console.log(resultArrayForTable);
+        setHistogramData(resultArrayForTable);
+        numberOfOptions(resultArrayForTable.length);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 5000);
+        // setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -56,15 +82,6 @@ const ResultsSummaryTable = () => {
 
     fetchData();
   }, [accessToken]);
-
-  const totalDocs = histogramData[0]
-  const totalRisks = histogramData[1]
-
-  const docsData = totalDocs?.data
-
-  console.log("ТОТАЛ", totalDocs)
-  console.log(docsData)
-  console.log("РИСКИ", totalRisks)
 
   const scrollLeftHandle = () => {
     if (tbodyRef.current) {
@@ -86,7 +103,10 @@ const ResultsSummaryTable = () => {
     <div className="results-summary-table-wrapper">
       <button className="prev-button" onClick={scrollLeftHandle}></button>
       <div className="summary-table-wrapper" >
-        <table className="summary-table">
+        {isLoading ? (
+          <ResultsSummaryTableLoader />
+        ) : (
+          <table className="summary-table">
           <thead>
             <tr>
               <th>Период</th>
@@ -95,15 +115,16 @@ const ResultsSummaryTable = () => {
             </tr>
           </thead>
           <tbody ref={tbodyRef} >
-            {/* {histogramData.map((dataRow, index) => (
-              <tr key={index}>
-                {dataRow.map((item) => (
-                  <td key={item.period}>{item.count}</td>
-                ))}
-              </tr>
-            ))} */}
+              {histogramData.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.date}</td>
+                  <td>{item.value}</td>
+                  <td>{item.risks}</td>
+                </tr>
+              ))} 
           </tbody>
         </table>
+        )}
       </div>
       <button className="next-button" onClick={scrollRightHandle}></button>
     </div>
