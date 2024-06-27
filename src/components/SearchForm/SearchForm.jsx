@@ -111,9 +111,9 @@ const SearchForm = () => {
     params.append("businessContext", businessContext);
     params.append("mainRole", mainRole);
     params.append("riskFactor", riskFactor);
-    params.append("technicalNews", technicalNews);
-    params.append("announcements", announcements);
-    params.append("summaries", summaries);
+    params.append("technicalNews", !technicalNews);
+    params.append("announcements", !announcements);
+    params.append("summaries", !summaries);
     params.append("startDate", startDate);
     params.append("endDate", endDate);
 
