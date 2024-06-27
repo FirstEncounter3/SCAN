@@ -1,6 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import "./ResultsSummaryTable.css";
 
@@ -8,27 +6,9 @@ import { getHistograms } from "../../api/api";
 
 import ResultsSummaryTableLoader from "../ResultsSummaryTableLoader/ResultsSummaryTableLoader";
 
-const ResultsSummaryTable = ({ numberOfOptions }) => {
+const ResultsSummaryTable = ({ numberOfOptions, queryParams, accessToken }) => {
   const tbodyRef = useRef(null);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const location = useLocation();
-  const search = location.search;
-  const query = new URLSearchParams(search);
-
-  const startDate = query.get("startDate");
-  const endDate = query.get("endDate");
-  const documentsCount = query.get("documentsCount");
-  const inn = query.get("inn");
-  const tonality = query.get("tonality");
-  const mainRole = query.get("mainRole");
-  const riskFactors = query.get("riskFactors");
-  const completeness = query.get("completeness");
-  const businessContext = query.get("businessContext");
-  const technicalNews = query.get("technicalNews");
-  const announcements = query.get("announcements");
-  const summaries = query.get("summaries");
-
-  const accessToken = useSelector((state) => state.user.accessToken);
   const [histogramData, setHistogramData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,18 +18,18 @@ const ResultsSummaryTable = ({ numberOfOptions }) => {
       try {
         const response = await getHistograms(
           accessToken, 
-          startDate, 
-          endDate, 
-          documentsCount, 
-          inn, 
-          tonality, 
-          mainRole, 
-          riskFactors, 
-          completeness, 
-          businessContext, 
-          technicalNews,
-          announcements,
-          summaries
+          queryParams.startDate, 
+          queryParams.endDate, 
+          queryParams.documentsCount, 
+          queryParams.inn, 
+          queryParams.tonality, 
+          queryParams.mainRole, 
+          queryParams.riskFactors, 
+          queryParams.completeness, 
+          queryParams.businessContext, 
+          queryParams.technicalNews,
+          queryParams.announcements,
+          queryParams.summaries
         );
         const data = response.data;
         console.log('Ответ от сервера', data);
@@ -71,10 +51,7 @@ const ResultsSummaryTable = ({ numberOfOptions }) => {
         console.log(resultArrayForTable);
         setHistogramData(resultArrayForTable);
         numberOfOptions(resultArrayForTable.length);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 5000);
-        // setIsLoading(false);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
