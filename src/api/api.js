@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getData } from "./apiConstants";
 
 const baseUrl = "https://gateway.scan-interfax.ru"
 
@@ -37,64 +38,20 @@ export const getHistograms = async (
   summaries
 ) =>  {
     const url = `${baseUrl}/api/v1/objectsearch/histograms`
-    const data = {
-        "issueDateInterval": {
-          "startDate": startDate,
-          "endDate": endDate
-        },
-        "searchContext": {
-          "targetSearchEntitiesContext": {
-            "targetSearchEntities": [
-              {
-                "type": "company",
-                "sparkId": null,
-                "entityId": null,
-                "inn": inn,
-                "maxFullness": completeness,
-                "inBusinessNews": businessContext
-              }
-            ],
-            "onlyMainRole": mainRole,
-            "tonality": tonality,
-            "onlyWithRiskFactors": riskFactors,
-            "riskFactors": {
-              "and": [],
-              "or": [],
-              "not": []
-            },
-            "themes": {
-              "and": [],
-              "or": [],
-              "not": []
-            }
-          },
-          "themesFilter": {
-            "and": [],
-            "or": [],
-            "not": []
-          }
-        },
-        "searchArea": {
-          "includedSources": [],
-          "excludedSources": [],
-          "includedSourceGroups": [],
-          "excludedSourceGroups": []
-        },
-        "attributeFilters": {
-          "excludeTechNews": technicalNews,
-          "excludeAnnouncements": announcements,
-          "excludeDigests": summaries
-        },
-        "similarMode": "duplicates",
-        "limit": documentsCount,
-        "sortType": "sourceInfluence",
-        "sortDirectionType": "desc",
-        "intervalType": "month",
-        "histogramTypes": [
-          "totalDocuments",
-          "riskFactors"
-        ]
-      }
+    const data = getData(
+        startDate,
+        endDate,
+        documentsCount,
+        inn,
+        tonality,
+        mainRole,
+        riskFactors,
+        completeness,
+        businessContext,
+        technicalNews,
+        announcements,
+        summaries
+    )
 
     const request = await axios.post(url, data, {
         headers: {
@@ -102,4 +59,54 @@ export const getHistograms = async (
         }
     });
     return request.data 
+}
+
+export const getObjects = async (
+  accessToken, 
+  startDate, 
+  endDate, 
+  documentsCount, 
+  inn, 
+  tonality, 
+  mainRole, 
+  riskFactors, 
+  completeness, 
+  businessContext,
+  technicalNews,
+  announcements,
+  summaries
+) => {
+    const url = `${baseUrl}/api/v1/objectsearch`
+    const data = getData(
+        startDate,
+        endDate,
+        documentsCount,
+        inn,
+        tonality,
+        mainRole,
+        riskFactors,
+        completeness,
+        businessContext,
+        technicalNews,
+        announcements,
+        summaries
+    )
+
+    const request = await axios.post(url, data, {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        }
+    });
+    return request.data
+}
+
+export const getDocuments = async (accessToken, encodedIds) => {
+  const url = `${baseUrl}/api/v1/documents`
+  const data = {"ids": encodedIds}
+  const request = await axios.post(url, data, {
+    headers: {
+      "Authorization": `Bearer ${accessToken}`
+    }
+  });
+  return request.data
 }
