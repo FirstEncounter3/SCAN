@@ -4,7 +4,7 @@ import "./ResultsSummary.css";
 
 import ResultsSummaryTable from "../ResultsSummaryTable/ResultsSummaryTable";
 
-const ResultsSummary = () => {
+const ResultsSummary = ({ queryParams, accessToken }) => {
     const [options, setOptions] = useState(0);
   return (
     <div className="results-summary-wrapper">
@@ -12,7 +12,7 @@ const ResultsSummary = () => {
         <h1>Общая сводка</h1>
         <p>Найдено {options} вариантов</p>
       </div>
-      <ResultsSummaryTable numberOfOptions={setOptions} />
+      <ResultsSummaryTable numberOfOptions={setOptions} queryParams={queryParams} accessToken={accessToken} />
     </div>
   );
 };
