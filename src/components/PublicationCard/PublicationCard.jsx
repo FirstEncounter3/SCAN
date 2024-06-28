@@ -1,7 +1,6 @@
 import React from "react";
 
 function PublicationCard({ accessToken, encodedIds }) {
-  console.log('from papas', encodedIds);
   return (
     <section className="publication-card-wrapper">
       <div className="publication-date-and-source">
