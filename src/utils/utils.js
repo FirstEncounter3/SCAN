@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { xml2js } from "xml-js";
 
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -78,4 +79,9 @@ export const getQueryParams = (location) => {
     announcements,
     summaries,
   };
+};
+
+export const parseXML = (xml) => {
+  const json = xml2js(xml, { compact: true });
+  return json;
 };
