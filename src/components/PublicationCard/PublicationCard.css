@@ -1,0 +1,132 @@
+.publication-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 641px;
+  height: 694px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  margin-bottom: 38px;
+}
+
+.publication-date-and-source {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  margin-left: 30px;
+  margin-top: 19px;
+}
+
+.publication-date-and-source > span,
+.publication-date-and-source > a {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: rgba(148, 148, 148, 1);
+}
+
+.publication-date-and-source > a {
+  text-decoration: underline;
+}
+
+.publication-header-and-bage {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-top: 24px;
+  margin-bottom: 14px;
+}
+
+.publication-header-and-bage > h2 {
+  font-family: Inter;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 31.47px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.publication-header-and-bage > span {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  background: rgba(255, 182, 79, 1);
+  border-radius: 5px;
+  width: 157px;
+  padding: 5px;
+}
+
+.publication-img-content {
+  width: 581px;
+  height: 158px;
+  border-radius: 10px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+.publication-img-content > img {
+  width: 581px;
+  height: 158px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: 0 0;
+}
+
+.publication-text-content {
+  width: 581px;
+  height: 228px;
+  margin-left: 30px;
+  margin-bottom: 32px;
+  overflow-y: hidden;
+}
+
+.publication-text-content > p {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: rgba(148, 148, 148, 1);
+}
+
+.publication-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 28px;
+  margin-bottom: 35px;
+}
+
+.publication-footer > a {
+  width: 223px;
+  height: 46.54px;
+  border-radius: 5px;
+  background: rgba(124, 227, 225, 1);
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.publication-footer > span {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(148, 148, 148, 1);
+}
