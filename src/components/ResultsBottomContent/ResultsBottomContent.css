@@ -18,16 +18,16 @@
 }
 
 .publications-grid-wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px;
 }
 
 .show-more-btn-wrapper {
   display: flex;
-  justify-content: center;
   margin-bottom: 109px;
+  width: 1330px;
+  justify-content: center;
 }
 
 .show-more-btn {
@@ -97,3 +97,13 @@
         0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
     }
   }
+
+@media screen and (max-width: 768px) {
+  .results-bottom-content-wrapper {
+    margin-left: 14px;
+  }
+  .publications-grid-wrapper {
+    flex-direction: column;
+    gap: 0px;
+  }
+}

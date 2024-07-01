@@ -1,18 +1,19 @@
 .publication-card-wrapper {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   width: 641px;
   height: 694px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   margin-bottom: 38px;
+  padding: 19px 30px;
 }
 
 .publication-date-and-source {
   display: flex;
   flex-direction: row;
   gap: 14px;
-  margin-left: 30px;
   margin-top: 19px;
 }
 
@@ -34,7 +35,6 @@
 .publication-header-and-bage {
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
   margin-top: 24px;
   margin-bottom: 14px;
 }
@@ -54,7 +54,7 @@
   font-weight: 400;
   line-height: 14.52px;
   letter-spacing: 0.02em;
-  text-align: left;
+  text-align: center;
   background: rgba(255, 182, 79, 1);
   border-radius: 5px;
   width: 157px;
@@ -65,7 +65,6 @@
   width: 581px;
   height: 158px;
   border-radius: 10px;
-  margin-left: 30px;
   margin-bottom: 20px;
 }
 
@@ -80,9 +79,11 @@
 .publication-text-content {
   width: 581px;
   height: 228px;
-  margin-left: 30px;
   margin-bottom: 32px;
-  overflow-y: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .publication-text-content > p {
@@ -93,6 +94,9 @@
   letter-spacing: 0.02em;
   text-align: left;
   color: rgba(148, 148, 148, 1);
+  padding: 0;
+  margin: 0;
+  text-overflow: ellipsis;
 }
 
 .publication-footer {
@@ -100,7 +104,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-left: 30px;
   margin-right: 28px;
   margin-bottom: 35px;
 }
@@ -129,4 +132,42 @@
   letter-spacing: 0.02em;
   text-align: center;
   color: rgba(148, 148, 148, 1);
+}
+
+@media screen and (max-width: 768px) {
+  .publication-card-wrapper {
+    width: 335px;
+    height: 694px;
+    padding: 19px 14px;
+  }
+  .publication-date-and-source > span,
+  .publication-date-and-source > a {
+    font-size: 14px;
+  }
+  .publication-header-and-bage > h2 {
+    font-size: 19px;
+  }
+  .publication-header-and-bage > span {
+    font-size: 10px;
+  }
+  .publication-img-content,
+  .publication-img-content > img {
+    width: 297px;
+    height: 158px;
+  }
+  .publication-text-content {
+    width: 290px;
+    height: 255px;
+  }
+  .publication-text-content > p {
+    font-size: 12px;
+  }
+  .publication-footer > a {
+    width: 195px;
+    height: 40.7px;
+    font-size: 14px;
+  }
+  .publication-footer > span {
+    font-size: 14px;
+  }
 }
