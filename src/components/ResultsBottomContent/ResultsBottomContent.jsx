@@ -36,7 +36,7 @@ function ResultsBottomContent({ queryParams, accessToken }) {
         );
         const data = response.items;
         setEncodedIds(data.map((item) => item.encodedId));
-        setEncodedIdsLength(data.length); //13
+        setEncodedIdsLength(data.length);
         console.log("Полученный список encodedIds", data);
       } catch (error) {
         console.error(error);
