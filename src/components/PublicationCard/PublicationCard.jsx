@@ -1,35 +1,48 @@
-import React, {useState} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { parseXML } from "../../utils/utils";
+import { smallFormattedText, concatenateXmlText, tryFindImg, badge } from "../../utils/utils";
 
 import "./PublicationCard.css";
 
-function PublicationCard({ attributes, content, issueDate, title, source, url }) {
-  const parsedXml = parseXML(content.markup);
-  const parsedDate = issueDate.split('T')[0].split('-').reverse().join('.');
-  const text = Array.isArray(parsedXml.scandoc.sentence)
-  ? parsedXml.scandoc.sentence.map(sentence => sentence._text).join(" ") : "";
-
+function PublicationCard({
+  attributes,
+  content,
+  issueDate,
+  title,
+  source,
+  url,
+}) {
+  const parsedDate = issueDate.split("T")[0].split("-").reverse().join(".");
+  const text = concatenateXmlText(content.markup);
+  const aLittleFormattedText = smallFormattedText(text);
+  const imgUrl = tryFindImg(content.markup);
+  const badgeText = badge(attributes.isTechNews, attributes.isAnnouncement, attributes.isDigest)
   return (
     <section className="publication-card-wrapper">
       <div className="publication-date-and-source">
         <span>{parsedDate}</span>
-        <Link to={url}>{source.name}</Link>
+        <Link to={url} target="_blank">
+          {source.name}
+        </Link>
       </div>
       <div className="publication-header-and-bage">
-        <h2>{title.text}</h2>
-        <span>Технические новости</span>
+        <h2>{title.text.slice(0, 100) + " ..."}</h2>
+        <span>{badgeText}</span>
       </div>
       <div className="publication-img-content">
-        <img src={''} alt="publication" />
+        {imgUrl ? (
+          <img src={imgUrl} alt="publication" />
+        ) : (
+          <img src="no_image.png" alt="publication" />
+        )}
       </div>
       <div className="publication-text-content">
-        <p>
-          {text}
-        </p>
+        <p>{aLittleFormattedText}</p>
       </div>
       <div className="publication-footer">
-        <Link to={url}>Читать в источнике</Link>
+        <Link to={url} target="_blank">
+          Читать в источнике
+        </Link>
         <span>{attributes.wordCount} слова</span>
       </div>
     </section>
