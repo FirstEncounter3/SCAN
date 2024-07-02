@@ -25,7 +25,8 @@ const BottomContent = () => {
           secondAdvantage={beginner.secondAdvantage}
           thirdAdvantage={beginner.thirdAdvantage}
           color="#FFB64F"
-          fontColor="#000000" 
+          fontColor="#000000"
+          isCurrentRate={true} 
         />
         <Rate
           title={pro.title}
@@ -39,7 +40,8 @@ const BottomContent = () => {
           secondAdvantage={pro.secondAdvantage}
           thirdAdvantage={pro.thirdAdvantage}
           color="#7CE3E1"
-          fontColor="#000000" 
+          fontColor="#000000"
+          isCurrentRate={false}  
         />
         <Rate
           title={business.title} 
@@ -54,6 +56,7 @@ const BottomContent = () => {
           thirdAdvantage={business.thirdAdvantage}
           color="#000000"
           fontColor="#FFFFFF"
+          isCurrentRate={false} 
         />
       </div>
     </section>
