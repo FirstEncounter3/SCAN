@@ -164,7 +164,6 @@
 }
 
 .button-plan > .request-button {
-  white-space: nowrap;
   transition: 0.3s;
 }
 
@@ -199,6 +198,8 @@
   .button-plan > button {
     width: 286px;
     height: 59px;
+    font-size: 15px;
+    text-align: center;
   }
 
   .footnote {
