@@ -33,6 +33,16 @@ const SearchForm = () => {
   const [endDate, setEndDate] = useState("");
   const [isFormEndDateValid, setIsFormEndDateValid] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const handleInnChange = (innValue, validateState) => {
     setInn(innValue);
     if (validateState === true) {
@@ -148,6 +158,9 @@ const SearchForm = () => {
             className={`search-button ${isFormInnValid && isFormDocumentCountValid && isFormStartDateValid && isFormEndDateValid ? "" : "inactive"}`}
             onClick={makeSearchRequest}
             disabled={isLoading || !isFormInnValid || !isFormDocumentCountValid || !isFormStartDateValid || !isFormEndDateValid}
+            style={{background: isHovered ? "rgba(89, 112, 255, 0.9)" : "rgba(89, 112, 255, 1)"}}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {isLoading ? "Получение данных..." : "Поиск"}
           </button>
