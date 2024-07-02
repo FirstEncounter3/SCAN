@@ -47,7 +47,7 @@ const SearchInputs = ({ onInnChange, onDocumentCountChange, onTonnalityChange })
   return (
     <div className="search-form-inputs">
       <div className="search-input-and-label">
-        <label htmlFor="inn">ИНН компании*</label>
+        <label htmlFor="inn">ИНН компании<span className={innError ? "warning-asterisk" : "asterisk"}>*</span></label>
         <input
           placeholder="10 цифр"
           id="inn"
@@ -69,7 +69,7 @@ const SearchInputs = ({ onInnChange, onDocumentCountChange, onTonnalityChange })
         </select>
       </div>
       <div className="search-input-and-label">
-        <label htmlFor="documentsCount">Количество документов в выдаче*</label>
+        <label htmlFor="documentsCount">Количество документов в выдаче<span className={emptyDocumentsCountError ? "warning-asterisk" : "asterisk"}>*</span></label>
         <input
         type="number" 
         placeholder="От 1 до 1000" 
