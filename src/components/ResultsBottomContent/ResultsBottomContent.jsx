@@ -46,7 +46,9 @@ function ResultsBottomContent({ queryParams, accessToken }) {
         const data = response.items;
         setEncodedIds(data.map((item) => item.encodedId));
         setEncodedIdsLength(data.length);
-        console.log("Полученный список encodedIds", data);
+        if(data.length <= 10) {
+          setShownButtons(false);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -70,7 +72,6 @@ function ResultsBottomContent({ queryParams, accessToken }) {
         };
       });
       setArrayOfObjects((prevObjects) => [...prevObjects, ...extractData]);
-      console.log("Полученный список объектов", extractData);
     } catch (error) {
       console.error(error);
     }
@@ -83,7 +84,6 @@ function ResultsBottomContent({ queryParams, accessToken }) {
       const first10Ids = encodedIds.slice(0, 10);
       setCurrentIndex(10);
       fetchData(accessToken, first10Ids);
-      console.log("Первый запрос");
     }
   }, [encodedIds]);
 
@@ -91,10 +91,17 @@ function ResultsBottomContent({ queryParams, accessToken }) {
     if (currentIndex < encodedIdsLength) {
       const next10Ids = encodedIds.slice(currentIndex, currentIndex + 10);
       setCurrentIndex(currentIndex + 10);
-      console.log("Loading more publications");
       fetchData(accessToken, next10Ids);
     }
   };
+
+  useEffect(() => {
+    if (currentIndex >= encodedIdsLength) {
+      setShownButtons(false);
+    } else {
+      setShownButtons(true);
+    }
+  }, [currentIndex, encodedIdsLength]);
 
   return (
     <div className="results-bottom-content-wrapper">
