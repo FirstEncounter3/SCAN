@@ -26,7 +26,6 @@
 .show-more-btn-wrapper {
   display: flex;
   margin-bottom: 109px;
-  width: 1330px;
   justify-content: center;
 }
 
@@ -106,5 +105,13 @@
   .publications-grid-wrapper {
     flex-direction: column;
     gap: 0px;
+  }
+  .show-more-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    left: 0;
+  }
+  .show-more-btn {
+    width: 335px;
   }
 }
