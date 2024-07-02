@@ -32,11 +32,8 @@ const ResultsSummaryTable = ({ numberOfOptions, queryParams, accessToken }) => {
           queryParams.summaries
         );
         const data = response.data;
-        console.log('Ответ от сервера', data);
         const totalDocs = data[0];
-        console.log('totalDocs', totalDocs);
         const totalRisks = data[1];
-        console.log('totalRisks', totalRisks);
 
         const resultArrayForTable = totalDocs.data.map((doc, index) => {
           const risks = totalRisks.data[index]?.value || 0;
@@ -48,7 +45,6 @@ const ResultsSummaryTable = ({ numberOfOptions, queryParams, accessToken }) => {
           };
         });
         
-        console.log(resultArrayForTable);
         setHistogramData(resultArrayForTable);
         numberOfOptions(resultArrayForTable.length);
         setIsLoading(false);
