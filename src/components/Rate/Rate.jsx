@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./Rate.css";
 
@@ -16,9 +17,12 @@ const Rate = ({
   secondAdvantage,
   thirdAdvantage,
   color,
-  fontColor
+  fontColor,
+  isCurrentRate,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isLogin = useSelector((state) => state.user.isLogin);
+
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -32,7 +36,7 @@ const Rate = ({
 
   return (
     <div className="plan-card" 
-      style={{ border: isHovered ? `2px solid ${color}` : `2px solid transparent` }}
+      style={{ border: isHovered ? `2px solid ${color}` : isCurrentRate ? `2px solid ${color}` : `2px solid transparent` }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -48,7 +52,11 @@ const Rate = ({
       <div className="plan-bottom">
         <div className="price">
           <h2>{price}</h2>
-          <span>{oldPrice}</span>
+          <span className="old-price">{oldPrice}</span>
+          <span className="rate-badge" 
+            style={{display: isCurrentRate && isLogin && !useIsMobile() ? "flex" : "none"}}>
+            Текущий тариф
+          </span>
         </div>
         <p className="footnote">{footnote}</p>
         <p className="label-list">В тариф входит:</p>
@@ -67,7 +75,19 @@ const Rate = ({
           </li>
         </ul>
         <div className="button-plan">
-          <button className="request-button">Подробнее</button>
+          <button 
+          className="request-button" 
+          style={{
+            background: isCurrentRate && isLogin ? "rgba(210, 210, 210, 1)" 
+            : "rgba(89, 112, 255, 1)",
+            color: isCurrentRate && isLogin ? "rgba(0, 0, 0, 1)"
+            : "rgba(255, 255, 255, 1)"
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            >
+            {isCurrentRate && isLogin ? "Перейти в личный кабинет" : "Подробнее"}
+          </button>
         </div>
       </div>
     </div>
