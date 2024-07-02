@@ -22,6 +22,7 @@ const Rate = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const isLogin = useSelector((state) => state.user.isLogin);
+  const isMobile = useIsMobile();
 
 
   const handleMouseEnter = () => {
@@ -32,11 +33,11 @@ const Rate = ({
     setIsHovered(false);
   };
 
-  const cornerImage = useIsMobile ? `${smallImage}` : `${image}`;
+  const cornerImage = isMobile ? `${smallImage}` : `${image}`;
 
   return (
     <div className="plan-card" 
-      style={{ border: isHovered ? `2px solid ${color}` : isCurrentRate ? `2px solid ${color}` : `2px solid transparent` }}
+      style={{ border: isHovered ? `2px solid ${color}` : isCurrentRate && isLogin ? `2px solid ${color}` : `2px solid transparent` }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -54,7 +55,7 @@ const Rate = ({
           <h2>{price}</h2>
           <span className="old-price">{oldPrice}</span>
           <span className="rate-badge" 
-            style={{display: isCurrentRate && isLogin && !useIsMobile() ? "flex" : "none"}}>
+            style={{display: isCurrentRate && isLogin && !isMobile ? "flex" : "none"}}>
             Текущий тариф
           </span>
         </div>
