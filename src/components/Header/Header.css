@@ -30,6 +30,11 @@
 
 a {
     text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {

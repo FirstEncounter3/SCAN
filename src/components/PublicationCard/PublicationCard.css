@@ -30,6 +30,11 @@
 
 .publication-date-and-source > a {
   text-decoration: underline;
+  transition: 0.3s;
+}
+
+.publication-date-and-source > a:hover {
+  color: rgb(115, 115, 115);
 }
 
 .publication-header-and-bage {
@@ -122,6 +127,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
+}
+
+.publication-footer > a:hover {
+  text-decoration: none;
+  background: rgba(124, 227, 225, 0.7);
 }
 
 .publication-footer > span {

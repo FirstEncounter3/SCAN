@@ -64,7 +64,7 @@
 }
 
 .price > h2,
-.price > span {
+.price > .old-price {
   margin-right: 5px;
 }
 
@@ -78,7 +78,7 @@
   margin-right: 19px;
 }
 
-.price > span {
+.price > .old-price {
   font-family: Inter;
   font-size: 25px;
   font-weight: 500;
@@ -87,6 +87,28 @@
   text-align: left;
   color: darkgray;
   text-decoration: line-through;
+}
+
+.price > .rate-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  margin-left: 30px;
+  margin-top: 12px;
+  background-color: #3ba5e0;
+  border-radius: 10px;
+  width: 134px;
+  height: 24px;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  align-self: flex-start;
 }
 
 .footnote {
@@ -139,6 +161,15 @@
 
 .button-plan {
   margin-top: -50px;
+}
+
+.button-plan > .request-button {
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.button-plan > .request-button:hover {
+  background: #596fffac;
 }
 
 @media screen and (max-width: 768px) {

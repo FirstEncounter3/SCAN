@@ -47,9 +47,14 @@ p {
     border: none;
     color: #FFFFFF;
     font-size: 22px;
-    padding: 14px 64px 18px 63px;
+    /* padding: 14px 64px 18px 63px; */
     margin-top: 70px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.request-button:hover {
+    background: #596fffe0;
 }
 
 @media screen and (max-width: 768px) {

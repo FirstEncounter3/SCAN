@@ -36,6 +36,11 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-info > button:hover {
+  color: rgb(120, 120, 120);
 }
 
 .img-user-wrapper {
