@@ -67,7 +67,7 @@ const DateRangePicker = ( { onStartDateChange, onEndDateChange } ) => {
 
   return (
     <div className="date-range-picker-wrapper">
-      <label>Диапазон поиска*</label>
+      <label>Диапазон поиска<span className={dateError ? "warning-asterisk" : "asterisk"}>*</span></label>
       <div className="date-range-picker">
         <input
           type="text"
