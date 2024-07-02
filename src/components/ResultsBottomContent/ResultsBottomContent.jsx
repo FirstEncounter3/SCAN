@@ -14,6 +14,15 @@ function ResultsBottomContent({ queryParams, accessToken }) {
   const [shownButtons, setShownButtons] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchingData, setFetchingData] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,7 +120,9 @@ function ResultsBottomContent({ queryParams, accessToken }) {
         <button
           className="show-more-btn"
           onClick={loadMorePublications}
-          style={{ display: shownButtons ? "block" : "none" }}
+          style={{ display: shownButtons ? "block" : "none", background: isHovered ? "rgba(89, 112, 255, 0.9)" : "rgba(89, 112, 255, 1)"}}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           Показать еще
         </button>
